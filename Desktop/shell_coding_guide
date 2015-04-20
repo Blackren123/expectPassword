@@ -1,0 +1,103 @@
+#!/bin/bash
+
+#=======================================================#
+# File name: DB_recovery_plan.sh                        #
+# Function: Cristel backup and restore with external    #
+#           server on mCAS platform                     #
+# Usage: ./DB_recovery_plan.sh                          #
+# Copyright(c) 2013, Alcatel-Lucent all rights reserved #
+# Version: 0.1                                          #
+#=======================================================#
+
+project_dir="/home/blackmar/code_store/Feature74181"    # Directory of this project
+
+#--------------------------------------------
+# Function name: getValue
+# Description: xxxx
+# Parameters: xxxx
+# Returns: xxxx
+#--------------------------------------------
+getValue()
+{
+    xxxx
+}
+
+#--------------------------------------------
+# Function name: raiseAlarm
+# Description: xxxx
+# Parameters: xxxx
+# Returns: xxxx
+#--------------------------------------------
+raiseAlarm()
+{
+    # Lines: The lines of a function should be less than 100, otherwise it's better to divide into 2 or more functions
+    # Function name:
+    #     1. verb + noun, and the first alphabet of second word should be in upper case
+    #     2. Recommend not to use key word 'function' when a function was defined, e.g, function raiseAlarm()
+    # Indentation: Recommend to use 1 tab when needed, not to mix tab and space in the same file
+   
+    # File to record all the servers' information (Address,Name,Account,Used directory ....)
+    server_cfg_file="/cust_use/SDM/SDM_tools/util/DB_recovery_plan_external.cfg"
+
+    # Naming appoint:
+    #     1. The names of file, variable and function should not exceed more than 20 characters
+    #     2. Only can use alphabet, number and '_', lower case is preferred
+    #     3. If there is more than 1 word, we can use '_' to connect them
+    #     4. Avoid to use the key words in linux as a name
+   
+    # Commenting appoint:
+    #     1. Commenting in the beginning of each file and each function
+    #     2. Commenting when the variable defined at the first time
+    #     3. Commenting if this statement is a key or complexed logic
+    #     4. Commenting when the code has been updated
+    #     5. Clean up the unused comments and keep code tidy
+   
+    addition1_text=$1    # Parameter 1: text
+    node2_id=$2          # Parameter 2: id
+    message3=$3          # Parameter 3: msg
+    object4_name=$4      # Parameter 4: name
+    alarm5_code=$5       # Parameter 5: code
+    alarm6_source=$6     # Parameter 6: source
+    specific7_problem=$7 # Parameter 7: problem
+
+    # Use $() prefer to ``, except portability is in your first consideration
+    result=$(ps -ef | grep CSOP | grep -v grep)
+   
+    # if statement:
+    #     1. The levels of if nesting should be less than 5
+    #     2. Put the large possibility code in if statement and little possibility one in else statement
+    if [ $? -eq 0 ]; then
+        # The length of line should not exceed more than 88 characters,
+        # if it's too long, we can use "\[Enter]" to cut it, except the pipe command.
+        /cs/sn/utest/alarm/genalarm -a "$addition_text" -i "$node_id" \
+           -l MJ -m "$message" -n "$object_name" -o "$alarm_code" \
+           -p 7 -r "$alarm_source" -s "$specific_problem" -t 3
+        if [ $? != 0 ]; then
+            log "ERROR: DB RECOVERY PLAN:" \
+                "RAISE ALARM $alarm_code FAILED."
+            exit_with_error
+        fi
+    else
+        alarm_before_exit
+    fi
+   
+    # case statement:
+    #     1. Keep case statement simple, otherwise put the complexed code into an independent function
+    #     2. Recommend to add branch *) at the end of case statement
+    case $input in
+        hello)
+            echo "hello"
+        ;;
+        bye)
+            echo "bye"
+            if foo; then
+                getValue
+            fi
+        ;;
+        *)
+            echo "You said something weird..."
+        ;;
+    esac
+}
+
+raiseAlarm
